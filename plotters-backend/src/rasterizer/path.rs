@@ -84,7 +84,9 @@ fn compute_polygon_vertex(triple: &[BackendCoord; 3], d: f64, buf: &mut Vec<Back
         }
     }
 
-    buf.push((x.round() as i32, y.round() as i32));
+    if x.is_finite() && y.is_finite() {
+        buf.push((x.round() as i32, y.round() as i32));
+    }
 }
 
 fn traverse_vertices<'a>(
